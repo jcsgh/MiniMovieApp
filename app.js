@@ -1,11 +1,12 @@
 
 
+// http://www.omdbapi.com/?i=tt3896198&apikey=d9040479
 
 class App extends React.Component {
     state = {
-        baseUrl: '',
-        apiKey: '',
-        query: '',
+        baseUrl: 'http://www.omdbapi.com/?',
+        apiKey: 'apikey=d9040479',
+        query: '&t=',
         movieTitle: '',
         searchURL: ''
     }
@@ -13,6 +14,14 @@ class App extends React.Component {
         return(
             <div>
                 <h1>Mini Movie App</h1>
+
+                <form>
+                    <label htmlFor="movieTitle">Movie Title</label>
+                    <input type="text" id="movieTitle" value={this.state.movieTitle}></input>
+                    
+                    <input type="submit"></input>
+
+                </form>
             </div>
         )
     }

@@ -1,1 +1,1 @@
-# MyVideoApp
+# Mini Movie App
