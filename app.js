@@ -8,7 +8,8 @@ class App extends React.Component {
         apiKey: 'apikey=d9040479',
         query: '&t=',
         movieTitle: '',
-        searchURL: ''
+        searchURL: '',
+        movie: null
     }
 
     handleChange = (e) => {
@@ -24,7 +25,12 @@ class App extends React.Component {
         }, () => {
             fetch(this.state.searchURL)
             .then( response => response.json())
-            .then(movies => console.log(movies))
+            .then(movie => {
+                this.setState({
+                    movie: movie // set movie in the state
+                })
+                // console.log(this.state.movie)
+            })
             .catch(error => console.error(error))
         })
     }
@@ -41,9 +47,39 @@ class App extends React.Component {
                     <input type="submit"></input>
 
                 </form>
+
+
+                { this.state.movie && <MovieInfo movie={this.state.movie}/>}
             </div>
         )
     }
 }
+
+const MovieInfo = (props) => {
+    return (
+        <div>
+            <h1>Movie title: {props.movie.Title}</h1>
+            <h2>Year: {props.movie.Year}</h2>
+            <img src={props.movie.Poster}/>
+            <h3>Genre: {props.movie.Genre}</h3>
+            <p>Plot: {props.movie.Plot}</p>
+        </div>
+    )
+}
+
+// class MovieInfo extends React.Component {
+//     render(){
+//         return(
+//             // <div>
+//             //     {this.props.state.map(movie => {
+                    
+//             //     })}
+//             // </div>
+//             <div key ={this.state.movie}>
+//                     <h1>{this.state.movie}</h1>
+//             </div>
+//         )
+//     }
+// }
 
 ReactDOM.render(<App />, document.getElementById('root'))
